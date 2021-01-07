@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Winter Cup display</title>
+        <link rel="stylesheet" href="style.css">
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="displayApp">
+            <section id="live-score" class="ui-top" v-if="displayLiveScore">
+                <table>
+                    <tr>
+                        <th>El</th>
+                        <td id="live-score-el">{{liveScoreEl}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th>Val</th>
+                        <td id="live-score-val">{{liveScoreVal}}</td>
+                    </tr>
+    
+                    <tr>
+                        <th>Sk</th>
+                        <td id="live-score-sk">{{liveScoreSk}}</td>
+                    </tr>
+                </table>
+            </section>
+    
+            <section id="team-score" class="ui-top" v-if="displayTeamScore">
+                <table>
+                    <tr class="team-a">
+                        <th>A</th>
+                        <td>{{teamA}}</td>
+                    </tr>
+    
+                    <tr class="team-b">
+                        <th>B</th>
+                        <td>{{teamB}}</td>
+                    </tr>
+                </table>
+            </section>
+    
+            <div id="ui-bottom">
+                <section id="final-score" v-if="displayFinalScore">
+                    <table>
+                        <tr>
+                            <th>Technical elements</th>
+                            <th>Components</th>
+                            <th><span v-if="finalScoreDeduction != 0">Deductions</span></th>
+                            <th><span v-if="segmentScore != finalScore">Segment Score</span></th>
+                            <th>Total Score</th>
+                            <th>Rank</th>
+                        </tr>
+    
+                        <tr>
+                            <td>{{finalScoreTechnical}}</td>
+                            <td>{{finalScoreComponents}}</td>
+                            <td><span v-if="finalScoreDeduction != 0">{{finalScoreDeduction}}</span></td>
+                            <td><span v-if="segmentScore != finalScore">{{segmentScore}}</span></td>
+                            <td>{{finalScore}}</td>
+                            <td id="final-score-rank">{{rank}}</td>
+                        </tr>
+                    </table>
+                </section>
+    
+                <section id="name-panel" v-if="displaySkater">
+                    <div id="name-panel-skater">{{skaterName}}</div>
+                    <div id="name-panel-group"><span :class="{'team-a' : skaterTeam == 'A', 'team-b' : skaterTeam == 'B'}">Team {{skaterTeam}}</span></div>
+                </section>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="script.js" type="text/javascript"></script>
+    </body>
+</html>
